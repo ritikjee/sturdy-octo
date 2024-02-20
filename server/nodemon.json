@@ -1,0 +1,7 @@
+{
+  "watch": ["src", ".env"],
+  "exec": "ts-node ./src/server.ts",
+  "ignore": ["src/**/*.spec.ts"],
+  "ext": "ts",
+  "stdin": false
+}
