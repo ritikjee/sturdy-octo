@@ -1,10 +1,24 @@
-import Image from "next/image";
+import axios from "axios";
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/internships`
+  );
+
   return (
     <main>
-      <h1>Welcome to Internxt</h1>
-      <Image src="/logo.svg" alt="Internxt" width={200} height={200} />
+      <h1>Internships</h1>
+      <ul>
+        {
+          // @ts-ignore
+          data.map((internship) => (
+            <li key={internship._id}>
+              <h2>{internship.role_name}</h2>
+              <p>{internship.company_logo}</p>
+            </li>
+          ))
+        }
+      </ul>
     </main>
   );
 }
